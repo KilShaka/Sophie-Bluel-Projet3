@@ -22,14 +22,18 @@ form div {
 }
 
 input,
-button,
-a {
+button {
   all: unset;
 }
 
-a {
+.mdp-oublie {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.login {
+  font-weight: 800;
+  color: black;
 }
 
 input {
