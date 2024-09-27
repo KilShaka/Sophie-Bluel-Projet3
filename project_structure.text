@@ -1,0 +1,72 @@
+- .DS_Store
+- .gitignore
+- Backend
+  - .DS_Store
+  - .env
+  - .gitignore
+  - ReadMe.md
+  - app.js
+  - config
+    - db.config.js
+  - controllers
+    - categories.controller.js
+    - users.controller.js
+    - works.controller.js
+  - database.sqlite
+  - images
+    - .gitkeep
+    - abajour-tahina1651286843956.png
+    - appartement-paris-v1651287270508.png
+    - appartement-paris-x1651287435459.png
+    - appartement-paris-xviii1651287541053.png
+    - bar-lullaby-paris1651287567130.png
+    - hotel-first-arte-new-delhi1651287605585.png
+    - hotel-first-arte-new-delhi1651878429528.png
+    - la-balisiere1651287350102.png
+    - le-coteau-cassis1651287469876.png
+    - restaurant-sushisen-londres1651287319271.png
+    - structures-thermopolis1651287380258.png
+    - villa-ferneze1651287511604.png
+  - middlewares
+    - auth.js
+    - checkWork.js
+    - multer-config.js
+  - models
+    - categories.model.js
+    - index.js
+    - users.model.js
+    - works.model.js
+  - package-lock.json
+  - package.json
+  - routes
+    - categories.routes.js
+    - user.routes.js
+    - works.routes.js
+  - server.js
+  - swagger.yaml
+- FrontEnd
+  - .DS_Store
+  - assets
+    - .DS_Store
+    - icons
+      - instagram.png
+    - images
+      - abajour-tahina.png
+      - appartement-paris-v.png
+      - appartement-paris-x.png
+      - appartement-paris-xviii.png
+      - bar-lullaby-paris.png
+      - hotel-first-arte-new-delhi.png
+      - la-balisiere.png
+      - le-coteau-cassis.png
+      - restaurant-sushisen-londres.png
+      - sophie-bluel.png
+      - structures-thermopolis.png
+      - villa-ferneze.png
+    - style.css
+  - index.html
+  - js
+    - filtres.js
+    - works.js
+- README.md
+- package-lock.json
