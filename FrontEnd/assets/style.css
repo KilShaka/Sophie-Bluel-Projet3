@@ -144,6 +144,46 @@ body {
   font-family: "Work Sans";
   font-size: 14px;
 }
+
+.modeEdition {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: black;
+  width: 100%;
+  height: 59px;
+}
+
+.modeEdition p {
+  color: white;
+}
+
+.modeEdition i {
+  width: 10px;
+}
+
+.boutonModifier {
+  all: unset;
+  display: flex;
+  gap: 10px;
+  width: 84px;
+  cursor: pointer;
+}
+
+.boutonModifier p,
+i {
+  font-size: 16px;
+  color: black;
+}
+
+.portfolio__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -186,6 +226,7 @@ nav ul {
   display: flex;
   align-items: center;
   list-style-type: none;
+  gap: 40px;
 }
 nav li {
   padding: 0 10px;

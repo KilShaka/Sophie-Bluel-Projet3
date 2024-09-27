@@ -10,6 +10,10 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
@@ -22,7 +26,7 @@
         <ul>
           <li><a href="#portfolio">projets</a></li>
           <li><a href="#contact">contact</a></li>
-          <li><a href="./Login.html">login</a></li>
+          <li class="login"><a href="./Login.html">login</a></li>
           <li class="logo-container">
             <a href="">
               <img
@@ -60,7 +64,7 @@
         </article>
       </section>
       <section id="portfolio">
-        <h2>Mes projets</h2>
+        <h2 class="portfolio__title">Mes projets</h2>
         <div class="filtres"></div>
         <div class="gallery">
           <!-- <figure>
@@ -134,5 +138,6 @@
     <!-- Ajout du type="module" pour permettre l'export/import des fonctions JS -->
     <script type="module" src="./js/works.js"></script>
     <script type="module" src="./js/filtres.js" defer></script>
+    <script type="module" src="./js/admin/adminPage.js" defer></script>
   </body>
 </html>
