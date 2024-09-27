@@ -1,0 +1,114 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  gap: 5px;
+  margin-bottom: 35px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 115px;
+}
+
+input,
+button,
+a {
+  all: unset;
+}
+
+a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+input {
+  background-color: white;
+  box-shadow: 1px 9px 20px rgb(0 0 0 / 9%);
+  height: 51px;
+  width: 359px;
+  padding-inline-start: 20px;
+}
+
+#submit-btn,
+.popup-error button {
+  background: #1d6154;
+  color: white;
+  width: 179px;
+  height: 36px;
+  border-radius: 60px;
+  text-align: center;
+  font-family: "Syne";
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+label {
+  font-family: "Work Sans";
+}
+
+/* POP-UP D'ERREUR */
+
+.popup-error {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 45vh;
+  width: 60vh;
+  background-color: #fffef8;
+  border-radius: 15px;
+  box-shadow: 1px 9px 20px rgb(0 0 0 / 28%);
+
+  position: absolute;
+  transform: scale(0.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.visible {
+  transform: scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.assombrir {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* ANIMATION POUR LES ERREURS  */
+@keyframes shakeError {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+}
+
+/* ERREUR EN CAS DE MAUVAIS INPUT */
+.input-error {
+  border: 2px solid red;
+  animation: shakeError 0.4s ease-in-out;
+}

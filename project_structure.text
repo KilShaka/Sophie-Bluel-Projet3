@@ -46,6 +46,7 @@
   - swagger.yaml
 - FrontEnd
   - .DS_Store
+  - Login.html
   - assets
     - .DS_Store
     - icons
@@ -63,9 +64,14 @@
       - sophie-bluel.png
       - structures-thermopolis.png
       - villa-ferneze.png
+    - login.css
     - style.css
   - index.html
   - js
+    - .DS_Store
+    - auth
+      - auth.js
+    - filtrage.js
     - filtres.js
     - works.js
 - README.md

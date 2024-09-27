@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sophie Bluel - Architecte d'intérieur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <link rel="stylesheet" href="./assets/login.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+      <nav>
+        <ul>
+          <li>projets</li>
+          <li>contact</li>
+          <li>login</li>
+          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="wrapper">
+        <h2>Log In</h2>
+        <form>
+          <div>
+            <label for="email-input">E-mail</label>
+            <input
+              required
+              type="email"
+              id="email-input"
+              autocomplete="username"
+            />
+          </div>
+          <div>
+            <label for="password-input">Mot de passe</label>
+            <input
+              required
+              type="password"
+              id="password-input"
+              autocomplete="current-password"
+            />
+          </div>
+          <button type="submit" id="submit-btn">Se connecter</button>
+        </form>
+        <div class="popup-error hidden">
+          <h2>Erreur</h2>
+          <p>Identifiant ou mot de passe incorrect</p>
+          <button id="popup-error__btn">Fermer</button>
+        </div>
+        <a href="">Mot de passe oublié</a>
+      </div>
+    </main>
+
+    <footer>
+      <nav>
+        <ul>
+          <li>Mentions Légales</li>
+        </ul>
+      </nav>
+    </footer>
+    <script src="./js/auth/auth.js"></script>
+  </body>
+</html>
