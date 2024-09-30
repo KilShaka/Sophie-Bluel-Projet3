@@ -12,11 +12,9 @@ async function recuperationDesDonneesFiltres() {
     if (!response.ok) {
       throw new Error(ERROR_MESSAGE);
     }
-    // console.log("Réponse bien reçue");
 
     const data = await response.json();
 
-    // console.log("Données récupérée et convertie en json");
     return data;
   } catch (error) {
     console.error(
@@ -87,8 +85,3 @@ async function lancerLesFiltres() {
 
 // APPELER LA FONCTION UNIQUEMENT QUAND LE DOCUMENT EST CHARGE
 document.addEventListener("DOMContentLoaded", lancerLesFiltres);
-
-// TEST DE LA FONCTION
-// recuperationDesDonneesFiltres().then((data) =>
-//   console.log("Résultat final:", data)
-// );

@@ -2,12 +2,9 @@ const body = document.querySelector("body");
 // ON RECUPERE LE TOKEN DANS LE LOCAL STORAGE
 
 function adminOrNot() {
-  console.log("début de la fonction");
-
   const monToken = sessionStorage.getItem("token");
 
   if (monToken) {
-    console.log("tu es bien admin bravo");
     afficherLaPageAdmin();
     remplacerLoginParLogout();
     afficherBoutonModifier();

@@ -65,10 +65,15 @@
       - structures-thermopolis.png
       - villa-ferneze.png
     - login.css
+    - modale.css
     - style.css
   - index.html
   - js
     - .DS_Store
+    - admin
+      - adminPage.js
+      - deleteWork.js
+      - editModale.js
     - auth
       - auth.js
     - filtrage.js

@@ -7,10 +7,8 @@ export async function recuperationDesDonnees() {
     if (!response.ok) {
       throw new Error(ERROR_MESSAGE);
     }
-    // console.log("Réponse bien reçue");
 
     const data = await response.json();
-    // console.log("Données récupérée et convertie en json");
     return data;
   } catch (error) {
     console.error(
@@ -22,31 +20,70 @@ export async function recuperationDesDonnees() {
 }
 
 //UTILISER LES DONNEES POUR CREER LES ELEMENTS
-export function creationDesImages(tableau) {
+export function creationDesImages(
+  tableau,
+  container = document.querySelector(".gallery"),
+  options = {}
+) {
+  const {
+    avecfigcaption = true,
+    avecAnimation = true,
+    avecIcones = false,
+  } = options;
   // SELECTION DE LA CLASSE GALLERIE
-  const gallery = document.querySelector(".gallery");
+  // const gallery = document.querySelector(".gallery");
+
+  container.innerHTML = "";
 
   //   UTILISATION DE FOREACH POUR ITERER SUR CHAQUE ELEMENT DU TABLEAU
   tableau.forEach((img, index) => {
     // CREATION DES ELEMENTS CONSTITUANTS CHAQUE IMAGE
     const figure = document.createElement("figure");
     const image = document.createElement("img");
-    const figcaption = document.createElement("figcaption");
     // ATTRIBUTION DE LA VALEUR A CHAQUE VARIABLE CREEE
     image.src = img.imageUrl;
     image.alt = img.title;
-    figcaption.textContent = img.title;
-    // ON RATTACHE LE TOUT A LA BALISE FIGURE
     figure.appendChild(image);
-    figure.appendChild(figcaption);
-    // ON RATTACHE LE TOUT A LA GALLERIE
-    gallery.appendChild(figure);
 
-    // AJOUT D'UN MINUTEUR POUR AJOUTER LA CLASSE VISIBLE AUX TRAVAUX AU FUR ET A MESURE
-    setTimeout(() => {
-      figure.classList.add("visible");
-    }, index * 100); // 100ms de délai pour chaque travail
+    if (avecfigcaption) {
+      const figcaption = document.createElement("figcaption");
+      figcaption.textContent = img.title;
+      figure.appendChild(figcaption);
+    }
+    if (avecIcones) {
+      const iconBackground = document.createElement("div");
+      iconBackground.classList.add("iconBackground");
+
+      const deleteIcon = document.createElement("i");
+      deleteIcon.classList.add(
+        "fa-solid",
+        "fa-trash-can",
+        "fa-sm",
+        "delete-icon"
+      );
+      deleteIcon.setAttribute("data-id", img.id);
+      deleteIcon.setAttribute("style", "color: #fcfcfc;");
+      iconBackground.appendChild(deleteIcon);
+      figure.appendChild(iconBackground);
+    }
+
+    container.appendChild(figure);
+
+    if (avecAnimation) {
+      // AJOUT D'UN MINUTEUR POUR AJOUTER LA CLASSE VISIBLE AUX TRAVAUX AU FUR ET A MESURE
+      setTimeout(() => {
+        figure.classList.add("visible");
+      }, index * 100); // 100ms de délai pour chaque travail
+    }
   });
+}
+
+// POUR LA PARTIE MODALE
+export async function recupererEtAfficherTravaux(
+  container = document.querySelector(".gallery")
+) {
+  const recupDonnees = await recuperationDesDonnees();
+  creationDesImages(recupDonnees, container);
 }
 
 // LANCER LA GALLERIE
