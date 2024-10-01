@@ -4,7 +4,7 @@ import { filtrerTravaux } from "./filtrage.js";
 
 // RECUPERER LES DONNEES (CATEGORIES DE FILTRES)
 
-async function recuperationDesDonneesFiltres() {
+export async function recuperationDesDonneesFiltres() {
   try {
     const response = await fetch("http://localhost:5678/api/categories");
     const ERROR_MESSAGE =
