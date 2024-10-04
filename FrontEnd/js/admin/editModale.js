@@ -6,6 +6,7 @@ import {
 import { deleteWork } from "../admin/deleteWork.js";
 import { lectureInput } from "../admin/inputFile.js";
 import { recuperationDesDonneesFiltres } from "../filtres.js";
+import { setupAddWorkForm } from "../admin/addWork.js";
 
 const main = document.querySelector("main");
 
@@ -39,12 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      // AFFICHER LA GALLERIE
+      // AFFICHER LA GALERIE
       async function afficherGallerie() {
         modaleWrapper.innerHTML = `
           <i class="fa-solid fa-xmark fa-xl" style="color: #000000;" id="croix"></i>
           <div class="gallery-container">
-            <h2 id="titreModale">Galerie Photo</h2>
+            <h2 id="titreModale">Galerie photo</h2>
             <div class="gallery"></div>
             <div class="line"></div>
             <button class="ajouter-photo">Ajouter une photo</button>
@@ -100,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <i class="fa-solid fa-xmark fa-xl" style="color: #000000;" id="croix"></i>
           </div>
           <div class="gallery-container">
-            <h2 id="titreModale">Ajout Photo</h2>
+            <h2 id="titreModale">Ajout photo</h2>
             <button id="ajouter-photo">
               <i class="fa-regular fa-image fa-2xl" style="color: #cbd6dc;"></i>
               <input type="file">
@@ -126,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
           closeModale();
         });
 
-        // RETOUR A LA GALLERIE
+        // RETOUR A LA GALERIE
         const fleche = document.querySelector(".fa-arrow-left");
         fleche.addEventListener("click", () => {
           afficherGallerie();
@@ -145,17 +146,22 @@ document.addEventListener("DOMContentLoaded", () => {
             error
           );
         }
-
-        // CHANGER LA COULEUR DU BOUTON VALIDER SI LES CHAMPS SONT REMPLIS
-        const inputTitre = document.getElementById("input-titre");
-        const inputFile = document.querySelector('input[type="file"]');
-
-        inputTitre.addEventListener("input", activerBouton);
-        inputFile.addEventListener("change", activerBouton);
+        // CONFIGURATION DU FORMULAIRE D'AJOUT
+        setupAddWorkForm();
       }
 
-      // Fonction pour créer les options de catégories
+      // FONCTION POUR CREER LES CATEGORIES (OPTIONS) DU MENU SELECT
       function creationDesCategories(tableau, selectElement) {
+        // ON CREE DABORD UNE OPTION VIDE
+        const optionVide = document.createElement("option");
+        optionVide.value = "";
+        optionVide.textContent = "";
+        //ON REND L'OPTION DEFINIE PAR DEFAUT ET NON SELECTIONNABLE
+        optionVide.selected = true;
+        optionVide.disabled = true;
+
+        selectElement.appendChild(optionVide);
+
         tableau.forEach((categorie) => {
           // CREATION DES ELEMENTS CONSTITUANTS CHAQUE OPTION
           const option = document.createElement("option");
@@ -165,19 +171,6 @@ document.addEventListener("DOMContentLoaded", () => {
           // ON RATTACHE L'OPTION AU SELECT
           selectElement.appendChild(option);
         });
-      }
-
-      // AFFICHER LE BOUTON EN VERT LORSQUE LES INPUTS SONT REMPLIS ET ACTIVER L'ENVOI DES INFOS AU BACKEND
-      function activerBouton() {
-        const inputTitre = document.getElementById("input-titre");
-        const inputFile = document.querySelector('input[type="file"]');
-        const ajouterBtn = document.getElementById("ajoutPhoto-btn");
-
-        if (inputTitre.value.trim() !== "" && inputFile.files.length > 0) {
-          ajouterBtn.style.backgroundColor = "#1D6154";
-        } else {
-          ajouterBtn.style.backgroundColor = "#A7A7A7";
-        }
       }
       // AFFICHER GALERIE
       afficherGallerie();

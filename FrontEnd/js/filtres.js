@@ -29,34 +29,41 @@ export async function recuperationDesDonneesFiltres() {
 function creationDesFiltres(tableau) {
   // SELECTION DE LA CLASSE FILTRES
   const filtres = document.querySelector(".filtres");
-  // CREATION DU BOUTON "TOUS" QUI N'EST PAS PRESENT SUR L'API
-  const boutonTous = document.createElement("div");
-  boutonTous.textContent = "Tous";
-  boutonTous.classList.add("filtres__btn", "filtres__btn--tous");
-  // ON RATTACHE LE BOUTON TOUS A FILTRES AVANT LA BOUCLE FOREACH
-  filtres.appendChild(boutonTous);
+  if (filtres) {
+    // CREATION DU BOUTON "TOUS"
+    const boutonTous = document.createElement("div");
+    boutonTous.textContent = "Tous";
+    boutonTous.classList.add(
+      "filtres__btn",
+      "filtres__btn--tous",
+      "clickedButton"
+    );
+    // ON RATTACHE LE BOUTON TOUS A FILTRES AVANT LA BOUCLE FOREACH
+    filtres.appendChild(boutonTous);
 
-  //   UTILISATION DE FOREACH POUR ITERER SUR CHAQUE ELEMENT DU TABLEAU
-  tableau.forEach((filtre) => {
-    // CREATION DES ELEMENTS CONSTITUANTS CHAQUE IMAGE
-    const div = document.createElement("div");
-    // ATTRIBUTION DE LA VALEUR A CHAQUE VARIABLE CREEE
-    div.textContent = filtre.name;
-    div.classList.add("filtres__btn");
-    // ON RATTACHE LE TOUT A LA BALISE FIGURE
-
-    // ----> RIEN A RATTACHER
-
-    // ON RATTACHE LE TOUT A LA GALLERIE
-    filtres.appendChild(div);
-  });
+    //   UTILISATION DE FOREACH POUR ITERER SUR CHAQUE ELEMENT DU TABLEAU
+    tableau.forEach((filtre) => {
+      // CREATION DES ELEMENTS CONSTITUANTS CHAQUE BOUTON
+      const div = document.createElement("div");
+      // ATTRIBUTION DE LA VALEUR A CHAQUE VARIABLE CREEE
+      div.textContent = filtre.name;
+      if (filtre.name === "Objets") {
+        div.classList.add("filtres__btn", "filtres__btn--objets");
+        filtres.appendChild(div);
+      } else {
+        div.classList.add("filtres__btn");
+        // ON RATTACHE LE TOUT
+        filtres.appendChild(div);
+      }
+    });
+  }
 }
 
 function trier() {
   const boutonFiltre = document.querySelectorAll(".filtres__btn");
-  // Tableau a remplir par les récupérations API
+  // TABLEAU A REMPLIR PAR LES RECUPERATIONS API
   let travaux = [];
-  // Ajout d'un evenement au clic sur tous les boutons
+  // AJOUT D'UN EVENEMENT AU CLIC SUR TOUS LES BOUTONS
   boutonFiltre.forEach((bouton) => {
     bouton.addEventListener("click", async () => {
       const categorie = bouton.textContent;
@@ -67,13 +74,24 @@ function trier() {
       // J'UTILISE MA FONCTION FILTRE IMPORTEE POUR FILTRER SELON LA CATEGORIE CLIQUEE
       const travauxFiltres = filtrerTravaux(travaux, categorie);
 
-      // VIDER LA GALLERIE EXISTANTE
+      // COLORER LE BOUTON CLIQUE ET DECOLORER LES AUTRES
+      clickedButton(bouton);
+      // VIDER LA GALERIE EXISTANTE
       const gallery = document.querySelector(".gallery");
       gallery.innerHTML = "";
       // AFFICHER LES TRAVAUX FILTRES
       creationDesImages(travauxFiltres);
     });
   });
+}
+
+// LOGIQUE POUR LA COLORATION DES BOUTONS
+function clickedButton(bouton) {
+  const elementAyantDejaLaClasse = document.querySelector(".clickedButton");
+  if (elementAyantDejaLaClasse) {
+    elementAyantDejaLaClasse.classList.remove("clickedButton");
+  }
+  bouton.classList.add("clickedButton");
 }
 
 // LANCER LES FILTRES

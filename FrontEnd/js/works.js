@@ -3,7 +3,7 @@ export async function recuperationDesDonnees() {
   try {
     const response = await fetch("http://localhost:5678/api/works");
     const ERROR_MESSAGE =
-      "LA REPONSE POUR LA RECUPERATION DES TRAVAUX DE SOPHIE N'EST PAS OK";
+      "LA REPONSE POUR LA RECUPERATION DES TRAVAUX DE SOPHIE EST KO";
     if (!response.ok) {
       throw new Error(ERROR_MESSAGE);
     }
@@ -30,8 +30,6 @@ export function creationDesImages(
     avecAnimation = true,
     avecIcones = false,
   } = options;
-  // SELECTION DE LA CLASSE GALLERIE
-  // const gallery = document.querySelector(".gallery");
 
   container.innerHTML = "";
 
@@ -45,6 +43,7 @@ export function creationDesImages(
     image.alt = img.title;
     figure.appendChild(image);
 
+    // GERER LES DIFFERENTES OPTIONS
     if (avecfigcaption) {
       const figcaption = document.createElement("figcaption");
       figcaption.textContent = img.title;
@@ -86,7 +85,7 @@ export async function recupererEtAfficherTravaux(
   creationDesImages(recupDonnees, container);
 }
 
-// LANCER LA GALLERIE
+// LANCER LA GALERIE
 async function lancerLaGalerie() {
   const recupDonnees = await recuperationDesDonnees();
   creationDesImages(recupDonnees);

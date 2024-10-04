@@ -1,5 +1,6 @@
 const monToken = sessionStorage.getItem("token");
 
+// FONCTION DE SUPPRESSION DES TRAVAUX
 export async function deleteWork(id) {
   try {
     const response = await fetch(`http://localhost:5678/api/works/${id}`, {

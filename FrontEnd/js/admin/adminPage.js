@@ -1,20 +1,25 @@
 const body = document.querySelector("body");
-// ON RECUPERE LE TOKEN DANS LE LOCAL STORAGE
 
+// FONCTION POUR VERIFIER SI NOUS SOMMES ADMIN OU NON
 function adminOrNot() {
+  // ON RECUPERE LE TOKEN DANS LE LOCAL STORAGE
   const monToken = sessionStorage.getItem("token");
 
+  // SI LE TOKEN EST BIEN PRESENT EN SESSION STORAGE ON DEROULE LES FONCTIONS DEDIEES A LA PAGE ADMIN
   if (monToken) {
     afficherLaPageAdmin();
     remplacerLoginParLogout();
     afficherBoutonModifier();
+    retirerLesFiltres();
+    changementsVisuels();
   }
 }
 
 function afficherLaPageAdmin() {
   const div = document.createElement("div");
+  const header = document.querySelector("header");
+  header.classList.add("header--adminMode");
   div.classList.add("modeEdition");
-  //   PREPEND = NOUVELLE FONCTION POUR INSERER L'ELEMENT AVANT TOUS LES ENFANTS DU NOEUD PARENT
   body.prepend(div);
   div.innerHTML = `
     <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
@@ -31,11 +36,17 @@ function remplacerLoginParLogout() {
     nouveauLien.href = "#";
     nouveauLien.textContent = "logout";
     nouveauLien.addEventListener("click", logout);
-    nouveauLien.appendChild(listItem);
+    listItem.appendChild(nouveauLien);
 
-    // Remplacer l'ancien élément par le nouveau
-    login.parentNode.replaceChild(nouveauLien, login);
+    // REMPLACER L'ANCIEN ELEMENT PAR LE NOUVEAU
+    login.parentNode.replaceChild(listItem, login);
   }
+}
+
+function retirerLesFiltres() {
+  const filtres = document.querySelector(".filtres");
+  const portfolioSection = document.getElementById("portfolio");
+  portfolioSection.removeChild(filtres);
 }
 
 function afficherBoutonModifier() {
@@ -47,6 +58,17 @@ function afficherBoutonModifier() {
   <p>modifier</p>`;
 
   portfolioTitle.appendChild(boutonModifier);
+}
+
+function changementsVisuels() {
+  const introduction = document.getElementById("introduction");
+  introduction.style.marginBottom = "130px";
+  introduction.style.marginTop = "0";
+  introduction.style.marginLeft = "80px";
+
+  const portfolioH2 = document.querySelector("#portfolio h2");
+  portfolioH2.style.marginBottom = "100px";
+  portfolioH2.style.marginLeft = "110px";
 }
 
 function logout(e) {

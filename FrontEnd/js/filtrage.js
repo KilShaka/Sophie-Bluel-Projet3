@@ -1,3 +1,5 @@
+// FONCTION FILTRER TRAVAUX
+
 export function filtrerTravaux(travaux, categorie) {
   if (categorie === "Tous") {
     return travaux;

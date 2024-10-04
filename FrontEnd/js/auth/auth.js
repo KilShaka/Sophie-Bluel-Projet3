@@ -11,23 +11,35 @@ const formatMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // EVENT LISTENER
 submitButton.addEventListener("click", (e) => {
   e.preventDefault();
-  // Réinitialiser les classes d'erreur
+  // ON REINITIALISE LES CLASSES D'ERREUR
   emailInput.classList.remove("input-error");
   passwordInput.classList.remove("input-error");
-  // VERIFIER LA VALIDITE DES INPUTS DU FORMULAIRE
-  if (!formatMail.test(emailInput.value) || emailInput.value.trim() === "") {
+
+  // LOGIQUE POUR VERIFIER LA VALIDITE DES INPUTS DU FORMULAIRE
+  let enErreur = false;
+
+  // VALIDITE DU MAIL
+  if (emailInput.value.trim() === "" || !formatMail.test(emailInput.value)) {
     emailInput.classList.add("input-error");
-    return;
-  } else if (passwordInput.value.trim() === "") {
+    enErreur = true;
+  }
+  // VALIDITE DU MDP
+  if (passwordInput.value.trim() === "") {
     passwordInput.classList.add("input-error");
+    enErreur = true;
+  }
+
+  // ON ARRETE LE CODE SI UN INPUT EST EN ERREUR
+  if (enErreur) {
     return;
   }
+
   // ON CREE UN OBJET CONTENANT LES INFOS UTILISATEUR
   const infosUtilisateur = {
     email: emailInput.value,
     password: passwordInput.value,
   };
-  // Nettoyer les inputs
+  // NETTOYAGE DES INPUTS
   emailInput.value = "";
   passwordInput.value = "";
 
